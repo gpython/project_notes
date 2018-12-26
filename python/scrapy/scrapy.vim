@@ -155,7 +155,10 @@ scrapy shell http://url
 >> response.request.headers 当前响应请求头
 
 
+###settings
 
+使用setting文件中内容
+spider.settings.get("BO_NAME", None)
 
 
 
