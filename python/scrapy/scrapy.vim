@@ -145,9 +145,14 @@ class MyspiderItem(scrapy.Item):
 
 
 
-
-
-
+scrapy shell http://url
+>> response.xpath()
+>> spider.name
+>> response.url 当前响应的url
+>> response.request.url 当前响应对应的请求的url
+>> response.headers 响应头
+>> response.body    响应体 也就是html代码 默认byte类型
+>> response.request.headers 当前响应请求头
 
 
 
