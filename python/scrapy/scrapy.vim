@@ -6,6 +6,7 @@ pip install pywin32 scrapy
 scrapy startproject mySpider
 
 生成一个爬虫
+cd mySpider
 scrapy genspider itcast "itcast.cn"
 
 提取数据
