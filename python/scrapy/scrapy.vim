@@ -156,6 +156,42 @@ scrapy shell http://url
 
 
 
+###RE 正则
+正则替换 正则查找值 替换为的值 字符串
+re.sub(r"\xa0|\s","", i)
+
+
+
+
+
+###CrawlSpider
+
+生成crawlspider 的爬虫
+scrapy startproject crawl_pro
+scrapy genspider -t crawl cf "circ.gov.cn"
+
+
+class CfSpider(CrawlSpider):
+  name = 'cf'
+  allowed_domains = ['circ.gov.cn']
+  start_urls = ['http://circ.gov.cn/']
+
+  #定义提取url的地址规则
+  rules = (
+    #LinkExtractor选择提取器 提取url地址
+    #callback 提取出来的url地址 的response会交给callback处理
+    #follow 当前url地址的响应是否重新通过Rule来提取url地址
+    #
+    Rule(LinkExtractor(allow=r'Items/'), callback='parse_item', follow=True),
+  )
+
+  #parse函数有特殊的功能 不能定义
+  def parse_item(self, response):
+    i = {}
+    #i['domain_id'] = response.xpath('//input[@id="sid"]/@value').extract()
+    #i['name'] = response.xpath('//div[@id="name"]').extract()
+    #i['description'] = response.xpath('//div[@id="description"]').extract()
+    return i
 
 
 
