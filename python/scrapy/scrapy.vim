@@ -159,6 +159,8 @@ scrapy shell http://url
 
 使用setting文件中内容
 spider.settings.get("BO_NAME", None)
+
+
 ###RE 正则
 正则替换 正则查找值 替换为的值 字符串
 re.sub(r"\xa0|\s","", i)
