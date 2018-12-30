@@ -44,6 +44,25 @@ scrapy crawl itcast
 LOG_LEVEL = "WARNING"
 
 
+open_spider(self, spider) #爬虫开启的时候执行  仅执行一次
+close_spider(self, spider) #爬虫关闭的时候执行 仅执行一次
+
+import json
+class JsonWritePipeline(object):
+  #爬虫开启时候执行 仅执行一次
+  def open_spider(self, spider):
+    self.file = open(spider.settings.get("SAVE_FILE", "./temp.json"), "w")
+
+  #爬虫关闭的时候执行 仅执行一次
+  def close_spider(self, spider):
+    self.file.close()
+
+  #爬虫项目执行 yield 返回数据在此处理
+  def process_item(self, item, spider):
+    line = json.dumps(dict(item)) + "\n"
+    self.file.write(line)
+    return item      #不return的情况下 另一个权重较低的pipeline就不会获取到该item+
+
 
 Xpath
 //div[@class='c1 text14_2']//text()
@@ -199,7 +218,23 @@ class CfSpider(CrawlSpider):
     return i
 
 
+### scrapy Mongo
+from pymongo import  MongoClient
 
+class SnbookPipeline(object):
+  #爬虫开启的时候执行 仅执行一次
+  def open_spider(self, spider):
+    #实例化mongoclient
+    con = MongoClient(spider.settings.get("HOST"), spider.settings.get("PORT"))
+    #链接数据库
+    db = con[spider.settings.get("DB)]
+
+    #链接到集合
+    self.collection = db[spider.settings.get("COLLECTION")]
+
+  def process_item(self, item, spider):
+    #插入字典形式的item
+    self.collection.insert(dict(item))
 
 
 
