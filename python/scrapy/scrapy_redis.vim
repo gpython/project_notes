@@ -71,6 +71,34 @@ class MySpider(RedisSpider):
 scrapy runspider myspider_redis.py
 
 
+#RedisCrawlSpider
+
+from scrapy.spider import Rule
+from scrapy.linkextractors import LinkExtractor
+from scrapy_redis.spiders import RedisCrawlSpider
+
+
+class MyCrawler(RedisCrawlSpider):
+  name = "mycrawler_redis"
+  redis_key = "mycrawler:start_urls"
+
+  #爬取规则
+  rules = (
+    Rule(LinkExtractor(), callback="parse_page", follow=True),
+  )
+
+  #动态定义允许的 域名列表
+  def __init__(self, *args, **kwargs):
+    domain = kwargs.pop("domain", "")
+    self.allowed_domains = filter(None, domain.split(","))
+    super(MyCrawler, self).__init__(*args, **kwargs)
+
+  def parse_page(self, response):
+    return {
+      "name": response.css("title::text").extract_first(),
+      "url": response.url
+    }
+
 
 
 
