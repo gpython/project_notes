@@ -41,6 +41,10 @@ ITEM_PIPELINES = {
 REDIS_HOST = '192.168.10.100'
 REDIS_PORT = 6379
 
+#下载延迟
+DOWNLOAD_DELAY = 1
+DOWNLOAD_DELAY = 2.5
+
 
 #向redis中存入项目的 起始爬取 链接地址
 lpush mysqpider:start_url http://www.dmoz.org

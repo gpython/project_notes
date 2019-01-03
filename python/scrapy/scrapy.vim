@@ -292,6 +292,9 @@ yield scrapy.Request(
 #url地址补充完整
 urllib.parse.urljoin(response.url, item['href'])
 
+#一种执行的方式
+from scrapy import cmdline
+cmdline.execute("scrapy runspider myspider_redis.py".split())
 
 
 USER_AGENT_LIST = [
