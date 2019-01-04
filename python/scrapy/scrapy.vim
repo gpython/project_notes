@@ -51,6 +51,14 @@ xpath("//div[@class='c1 text14_2']//img//@src")
 xpath("//a[text()='>']//@href")
 xpath(".//td[2]//a[@class='news14']//@title")
 
+
+bookstore/book
+  选取属于 bookstore 的子元素的所有 book 元素
+//book
+  选取所有 book 子元素，而不管它们在文档中的位置。
+bookstore//book
+  选择属于 bookstore 元素的后代的所有 book 元素，而不管它们位于 bookstore 之下的什么位置。
+
 class包含i的div
 xpath("//div[contains(@class, 'i')]")
 

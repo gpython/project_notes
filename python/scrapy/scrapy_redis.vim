@@ -1,3 +1,16 @@
+wget http://download.redis.io/releases/redis-4.0.6.tar.gz
+yum install gcc tcl
+tar zxvf redis-4.0.6.tar.gz
+cd redis-4.0.6
+
+make
+make install
+mkdir /etc/redis
+cp redis.conf /etc/redis/
+redis-server /etc/redis/redis_6379.conf
+
+
+
 pip install scrapy-redis
 
 Scheduler               #调度
