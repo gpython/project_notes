@@ -122,7 +122,7 @@ if __name__ == '__main__':
 
 
 
-
+#https://juejin.im/post/5b77b7836fb9a019f47d06f9
 # #解析代理IP地址
 # def parse(response):
 #   selector = etree.HTML(response)
