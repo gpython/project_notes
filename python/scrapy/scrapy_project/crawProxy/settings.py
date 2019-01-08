@@ -1,9 +1,24 @@
 #encoding:utf-8
 
 
-REDIS_HOST = '192.168.1.90'
+REDIS_HOST = "192.168.1.90"
 REDIS_PORT = 6379
+REDIS_DB = 1
+REDIS_KEY = "PROXY::IP"
 
+#最大 并发数量
+MAX_WORKERS = 10
+
+URL_LIST = [
+  "https://www.163.com",
+  "https://www.baidu.com",
+  "https://www.sina.com.cn",
+  "https://www.qq.com/",
+  "https://ai.taobao.com",
+  "https://www.jd.com",
+  "https://www.tmall.com",
+  "https://www.taobao.com"
+]
 
 USER_AGENT_LIST = [
   "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36",

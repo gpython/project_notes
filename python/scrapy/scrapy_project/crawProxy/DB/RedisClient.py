@@ -1,5 +1,4 @@
 #encoding:utf-8
-
 import redis
 
 class RedisClient(object):
@@ -8,10 +7,9 @@ class RedisClient(object):
     self.__conn = redis.Redis(host=host, port=port, db=db)
 
   def sadd(self, value):
-
     return self.__conn.sadd(self.key_name, value)
 
   def random(self, count=1):
-    return self.__conn.randomkey(self.key_name, count)
+    return self.__conn.SRANDMEMBER(self.key_name, count)
 
 
